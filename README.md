@@ -1,6 +1,6 @@
 # ChronoShifters-ChaskaBites
 
-# 🍽️ ChaskaBites
+# 🍽️ ChaskaBites | [Live Demo](https://chrono-shifters-chaska-bites.vercel.app/)
 
 **ChaskaBites** is an intelligent recipe finder website that helps you cook smart by identifying dishes through photos, voice, or ingredients you provide. Whether you're a beginner in the kitchen or a seasoned chef, ChaskaBites brings recipes to your fingertips in the most convenient way!
 
