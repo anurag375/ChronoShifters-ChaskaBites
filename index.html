@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chaska Bites | Recipe Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="logo">
+                    <span class="logo__icon">🍴</span>
+                    <span>Chaska Bites</span>
+                </div>
+                <nav class="nav">
+                    <button class="nav_link nav_link--active" data-section="home">Home</button>
+                    <button class="nav__link" data-section="recipes">Recipes</button>
+                    <button class="nav__link" data-section="about">About</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home-section" class="section section--active">
+        <!-- Hero Section -->
+        <div class="hero">
+            <div class="container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Discover Amazing Recipes with AI</h1>
+                    <p class="hero__description">Upload ingredients, speak your preferences, or browse our curated collection of delicious recipes</p>
+                    <div class="hero__actions">
+                        <button class="btn btn--primary btn--lg" onclick="scrollToIngredientInput()">
+                            <span class="btn__icon">📷</span>
+                            Start Cooking
+                        </button>
+                        <button class="btn btn--outline btn--lg" data-section="recipes">
+                            <span class="btn__icon">🔍</span>
+                            Browse Recipes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Recipes -->
+        <div class="featured-section">
+            <div class="container">
+                <div class="section__header">
+                    <h2>Featured Recipes</h2>
+                    <p>Hand-picked favorites to inspire your cooking</p>
+                </div>
+                <div class="recipes-grid" id="featured-recipes">
+                    <!-- Featured recipes will be populated here -->
+                </div>
+                <div class="section__footer">
+                    <button class="btn btn--primary" data-section="recipes">
+                        <span class="btn__icon">→</span>
+                        See All Recipes
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ingredient Input Section -->
+        <div class="ingredient-input-section" id="ingredient-input">
+            <div class="container">
+                <div class="section__header">
+                    <h2>Find Recipes by Ingredients</h2>
+                    <p>Use any of these methods to discover recipes based on what you have</p>
+                </div>
+                
+                <div class="input-methods">
+                    <div class="input-method">
+                        <div class="input-method__icon">
+                            <span>☁</span>
+                        </div>
+                        <h3>Upload Image</h3>
+                        <div class="file-upload" id="file-upload">
+                            <input type="file" id="file-input" accept="image/*" hidden>
+                            <div class="file-upload__area">
+                                <span class="upload-icon">☁</span>
+                                <p>Drag & drop an image or click to upload</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="input-method">
+                        <div class="input-method__icon">
+                            <span>📷</span>
+                        </div>
+                        <h3>Take Photo</h3>
+                        <button class="btn btn--outline btn--full-width" id="camera-btn">
+                            <span class="btn__icon">📷</span>
+                            Open Camera
+                        </button>
+                    </div>
+
+                    <div class="input-method">
+                        <div class="input-method__icon">
+                            <span>🎤</span>
+                        </div>
+                        <h3>Voice Input</h3>
+                        <button class="btn btn--outline btn--full-width" id="voice-btn">
+                            <span class="btn__icon">🎤</span>
+                            <span id="voice-btn-text">Start Speaking</span>
+                        </button>
+                    </div>
+
+                    <div class="input-method">
+                        <div class="input-method__icon">
+                            <span>⌨</span>
+                        </div>
+                        <h3>Type Ingredients</h3>
+                        <div class="ingredient-input">
+                            <input type="text" id="ingredient-text" placeholder="Type ingredient and press Enter" class="form-control">
+                            <div class="ingredient-tags" id="ingredient-tags"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Advanced Options -->
+                <div class="advanced-options">
+                    <button class="advanced-options__toggle" id="advanced-toggle">
+                        <span class="toggle-icon">⚙</span>
+                        Advanced Options
+                        <span class="chevron-icon">▼</span>
+                    </button>
+                    <div class="advanced-options__content" id="advanced-content">
+                        <div class="filters-grid">
+                            <div class="filter-group">
+                                <label class="form-label">Dietary Preferences</label>
+                                <div class="checkbox-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" value="vegetarian"> Vegetarian
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" value="vegan"> Vegan
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" value="gluten-free"> Gluten-Free
+                                    </label>
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" value="dairy-free"> Dairy-Free
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label class="form-label">Cooking Time (minutes)</label>
+                                <select class="form-control">
+                                    <option value="">Any time</option>
+                                    <option value="15">Under 15 min</option>
+                                    <option value="30">Under 30 min</option>
+                                    <option value="60">Under 1 hour</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label class="form-label">Difficulty Level</label>
+                                <select class="form-control">
+                                    <option value="">Any difficulty</option>
+                                    <option value="Easy">Easy</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Hard">Hard</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipes Section -->
+    <section id="recipes-section" class="section">
+        <div class="container">
+            <div class="section__header">
+                <h2>All Recipes</h2>
+                <p>Discover our complete collection of delicious recipes</p>
+            </div>
+            
+            <!-- Search and Filters -->
+            <div class="recipe-controls">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="recipe-search" placeholder="Search recipes..." class="form-control">
+                </div>
+                
+                <div class="recipe-filters">
+                    <select id="sort-select" class="form-control">
+                        <option value="">Sort by...</option>
+                        <option value="time-asc">Cooking Time (Low to High)</option>
+                        <option value="time-desc">Cooking Time (High to Low)</option>
+                        <option value="calories-asc">Calories (Low to High)</option>
+                        <option value="calories-desc">Calories (High to Low)</option>
+                        <option value="difficulty">Difficulty</option>
+                    </select>
+                    
+                    <select id="dietary-filter" class="form-control">
+                        <option value="">All Diets</option>
+                        <option value="vegetarian">Vegetarian</option>
+                        <option value="vegan">Vegan</option>
+                        <option value="healthy">Healthy</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Recipe Results -->
+            <div class="recipes-grid" id="all-recipes">
+                <!-- All recipes will be populated here -->
+            </div>
+            
+            <!-- Loading State -->
+            <div class="loading hidden" id="recipes-loading">
+                <div class="loading__spinner"></div>
+                <p>Loading recipes...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about-section" class="section">
+        <div class="container">
+            <div class="section__header">
+                <h2>About AI Recipe Finder</h2>
+                <p>Your intelligent cooking companion</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-feature">
+                    <div class="about-feature__icon">
+                        <span>🤖</span>
+                    </div>
+                    <h3>AI-Powered Search</h3>
+                    <p>Our advanced AI analyzes your ingredients and preferences to suggest the perfect recipes for you.</p>
+                </div>
+                
+                <div class="about-feature">
+                    <div class="about-feature__icon">
+                        <span>📱</span>
+                    </div>
+                    <h3>Multiple Input Methods</h3>
+                    <p>Upload photos, use voice commands, or type ingredients - we support all the ways you want to interact.</p>
+                </div>
+                
+                <div class="about-feature">
+                    <div class="about-feature__icon">
+                        <span>❤</span>
+                    </div>
+                    <h3>Personalized Experience</h3>
+                    <p>Filter by dietary preferences, cooking time, and difficulty to find recipes that match your lifestyle.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recipe Modal -->
+    <div class="modal hidden" id="recipe-modal">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content">
+            <div class="modal__header">
+                <h2 id="modal-title">Recipe Title</h2>
+                <button class="modal__close" id="modal-close">
+                    <span>✖</span>
+                </button>
+            </div>
+            <div class="modal__body">
+                <div class="recipe-detail">
+                    <div class="recipe-detail__info">
+                        <div class="recipe-detail__emoji" id="modal-emoji">🍝</div>
+                        <div class="recipe-detail__meta">
+                            <div class="recipe-meta__item">
+                                <span class="meta-icon">⏰</span>
+                                <span id="modal-time">25 mins</span>
+                            </div>
+                            <div class="recipe-meta__item">
+                                <span class="meta-icon">📶</span>
+                                <span id="modal-difficulty">Easy</span>
+                            </div>
+                            <div class="recipe-meta__item">
+                                <span class="meta-icon">👥</span>
+                                <span id="modal-servings">4 servings</span>
+                            </div>
+                            <div class="recipe-meta__item">
+                                <span class="meta-icon">🔥</span>
+                                <span id="modal-calories">420 cal</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="recipe-detail__description" id="modal-description">Recipe description...</p>
+                    
+                    <div class="recipe-detail__content">
+                        <div class="recipe-ingredients">
+                            <h3>Ingredients</h3>
+                            <ul id="modal-ingredients">
+                                <!-- Ingredients will be populated here -->
+                            </ul>
+                        </div>
+                        
+                        <div class="recipe-instructions">
+                            <h3>Instructions</h3>
+                            <ol id="modal-instructions">
+                                <!-- Instructions will be populated here -->
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
