@@ -48,11 +48,3 @@ All dishes and their complete recipe details are available in this section. You 
   - Dynamic recipe suggestion based on input ingredients
 
 ---
-
-## 📦 Installation
-
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/yourusername/ChaskaBites.git
-   cd ChaskaBites
-   `
