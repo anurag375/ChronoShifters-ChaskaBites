@@ -7,7 +7,8 @@
 ---
 
 ## Home UI -
-<img width="1882" height="861" alt="image" src="https://github.com/user-attachments/assets/510aba68-d5a0-464d-910f-5510f923d017" />
+<img width="1886" height="880" alt="image" src="https://github.com/user-attachments/assets/dd35dc8f-b098-49e4-b468-e1f46997441c" />
+
 
 ## Recipe Section -
 <img width="1876" height="867" alt="image" src="https://github.com/user-attachments/assets/936301e6-d2a4-45c7-8ec2-d0130cc52b64" />
