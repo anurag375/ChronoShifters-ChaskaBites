@@ -10,10 +10,6 @@
 <img width="1886" height="880" alt="image" src="https://github.com/user-attachments/assets/dd35dc8f-b098-49e4-b468-e1f46997441c" />
 
 
-## Recipe Section -
-<img width="1876" height="867" alt="image" src="https://github.com/user-attachments/assets/936301e6-d2a4-45c7-8ec2-d0130cc52b64" />
-
-
 ## 🌟 What Makes ChaskaBites Unique?
 
 We offer multiple ways for users to discover the right recipe:
