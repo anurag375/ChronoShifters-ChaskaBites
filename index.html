@@ -3,32 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Recipe Finder - Enhanced</title>
+    <title>AI Recipe Finder - Pro Edition</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body class="min-h-screen">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-white bg-opacity-90 backdrop-blur-sm z-50 shadow-sm py-4">
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    
+    <!-- Fixed Navigation -->
+    <nav class="fixed w-full z-50 shadow-sm py-4">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <div class="bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold text-xl py-2 px-4 rounded-lg">
+                    <div class="nav-logo bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold text-xl py-2 px-4 rounded-lg">
                         <i class="fas fa-utensils mr-2"></i>Chaska Bites
                     </div>
                 </div>
                 
                 <div class="hidden md:flex space-x-10">
-                    <a href="#home" class="relative font-medium text-gray-700 hover:text-purple-600 transition">Home</a>
-                    <a href="#cameraSection" class="relative font-medium text-purple-600 border-b-2 border-purple-600 pb-1 transition">Find Recipe</a>
-                    <a href="#reviews" class="relative font-medium text-gray-700 hover:text-purple-600 transition">Reviews</a>
-                    <a id="historyLink" class="relative font-medium text-gray-700 hover:text-purple-600 transition cursor-pointer">History</a>
+                    <a href="#home" class="nav-link relative font-medium text-gray-700 hover:text-purple-600 transition">Home</a>
+                    <a href="#cameraSection" class="nav-link active-nav-link relative font-medium text-purple-600 border-b-2 border-purple-600 pb-1 transition">Find Recipe</a>
+                    <a href="#reviews" class="nav-link relative font-medium text-gray-700 hover:text-purple-600 transition">Reviews</a>
+                    <a id="historyLink" class="nav-link relative font-medium text-gray-700 hover:text-purple-600 transition cursor-pointer">History</a>
                 </div>
                 
-                <div>
+                <div class="flex items-center">
+                    <button id="voiceControlNav" class="bg-gray-200 hover:bg-gray-300 text-gray-800 p-2 rounded-full mr-3 transition">
+                        <i class="fas fa-microphone"></i>
+                    </button>
                     <button class="bg-gradient-to-r from-purple-600 to-pink-500 text-white font-medium py-2 px-6 rounded-full hover:shadow-lg transition-all duration-300">
                         Get Started
                     </button>
@@ -42,17 +51,17 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="slide-in-left">
-                    <h1 class="text-5xl md:text-6xl font-bold leading-tight">
+                    <h1 class="text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white">
                         Discover Recipes with <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-500">AI Magic</span>
                     </h1>
-                    <p class="mt-6 text-xl text-gray-700 max-w-2xl">
+                    <p class="mt-6 text-xl text-gray-700 max-w-2xl dark:text-gray-300">
                         Snap a photo of any dish and instantly get the recipe, ingredients, and nutrition facts. Your personal AI chef is just a click away!
                     </p>
                     <div class="mt-10 flex flex-wrap gap-4">
                         <button onclick="document.getElementById('cameraSection').scrollIntoView({behavior: 'smooth'})" class="bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-4 px-8 rounded-full text-lg transition-all hover:from-purple-700 hover:to-pink-600 shadow-lg">
                             <i class="fas fa-camera mr-3"></i>Try It Now
                         </button>
-                        <button class="bg-white text-purple-600 font-bold py-4 px-8 rounded-full text-lg border-2 border-purple-600 hover:bg-purple-50 transition">
+                        <button class="bg-white text-purple-600 font-bold py-4 px-8 rounded-full text-lg border-2 border-purple-600 hover:bg-purple-50 transition dark:bg-gray-800 dark:text-white dark:border-purple-500">
                             <i class="fas fa-play-circle mr-3"></i>Watch Demo
                         </button>
                     </div>
@@ -70,16 +79,16 @@
     </section>
 
     <!-- Camera/Upload Section -->
-    <section id="cameraSection" class="py-20 bg-gradient-to-br from-purple-50 to-pink-50">
+    <section id="cameraSection" class="py-20 bg-gradient-to-br from-purple-50 to-pink-50 dark:from-gray-900 dark:to-gray-800">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 slide-in-up">
-                <h2 class="text-3xl font-bold text-gray-900">Find Your Recipe</h2>
-                <p class="mt-2 text-gray-600">Capture or upload a photo of your dish to discover its recipe</p>
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Find Your Recipe</h2>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Capture or upload a photo of your dish to discover its recipe</p>
             </div>
             
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl scale-in">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl scale-in dark:bg-gray-800">
                 <!-- Device Toggle -->
-                <div class="device-toggle p-4 bg-gray-50 border-b">
+                <div class="device-toggle p-4 bg-gray-50 border-b dark:bg-gray-700 dark:border-gray-600">
                     <div class="flex justify-center">
                         <button id="cameraToggle" class="device-toggle-btn active">
                             <i class="fa-solid fa-camera mr-2"></i>Camera
@@ -93,12 +102,11 @@
                 <!-- Camera View -->
                 <div id="cameraView" class="p-6">
                     <div class="camera-container">
-                        <div id="cameraPreview" class="aspect-video bg-gray-100 rounded-lg flex items-center justify-center">
-                            <div class="text-center">
-                                <div class="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fa-solid fa-camera text-white text-2xl"></i>
-                                </div>
-                                <p class="text-gray-600">Click below to activate camera</p>
+                        <div id="cameraPreview" class="aspect-video bg-gray-100 rounded-lg flex items-center justify-center dark:bg-gray-700">
+                            <div class="camera-prompt">
+                                <i class="fa-solid fa-camera text-purple-600"></i>
+                                <h3 class="text-xl font-bold mb-2 dark:text-white">Camera Access Required</h3>
+                                <p class="text-gray-600 dark:text-gray-300">Click below to activate your camera</p>
                             </div>
                         </div>
                         <div id="captureBtn" class="capture-btn">
@@ -106,7 +114,7 @@
                         </div>
                     </div>
                     
-                    <p class="text-gray-500 text-center mt-6">
+                    <p class="text-gray-500 text-center mt-6 dark:text-gray-400">
                         Position your dish in the frame and click the capture button to identify it
                     </p>
                 </div>
@@ -115,16 +123,16 @@
                 <div id="uploadView" class="hidden p-6">
                     <div id="fileUploadArea" class="file-upload-area">
                         <i class="fa-solid fa-cloud-arrow-up text-4xl text-purple-600 mb-4"></i>
-                        <h3 class="text-xl font-bold mb-2">Click to upload dish image</h3>
-                        <p class="text-gray-600 mb-4">or drag and drop your photo here</p>
-                        <p class="text-sm text-gray-500">Supports JPG, PNG, or WEBP (max 5MB)</p>
+                        <h3 class="text-xl font-bold mb-2 dark:text-white">Click to upload dish image</h3>
+                        <p class="text-gray-600 mb-4 dark:text-gray-300">or drag and drop your photo here</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Supports JPG, PNG, or WEBP (max 5MB)</p>
                         <input type="file" id="fileInput" class="hidden" accept="image/*">
                     </div>
                     
                     <div id="imagePreview" class="hidden mt-6">
                         <img id="previewImg" src="" alt="Preview" class="preview-image">
                         <div class="flex justify-center mt-6 gap-4">
-                            <button id="cancelUploadBtn" class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-6 rounded-lg transition">
+                            <button id="cancelUploadBtn" class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 py-3 px-6 rounded-lg transition dark:bg-gray-700 dark:text-white">
                                 <i class="fa-solid fa-xmark mr-2"></i>Cancel
                             </button>
                             <button id="analyzeUploadBtn" class="btn bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 px-6 rounded-lg hover:shadow-lg transition">
@@ -136,29 +144,51 @@
                 
                 <!-- Loading View (initially hidden) -->
                 <div id="loadingView" class="hidden p-12 text-center">
-                    <div class="loader mx-auto mb-6"></div>
-                    <h2 class="text-2xl font-bold mb-2">Analyzing your dish...</h2>
-                    <p class="text-gray-600">Our AI is identifying your dish and finding the perfect recipe</p>
-                    <div class="mt-8 bg-gray-100 rounded-xl p-4 max-w-md mx-auto">
-                        <div class="flex justify-between mb-2">
-                            <span>Image recognition</span>
-                            <span>85%</span>
+                    <div class="ai-processing">
+                        <div class="loader mx-auto mb-6"></div>
+                        <h2 class="text-2xl font-bold mb-2 dark:text-white">Analyzing your dish...</h2>
+                        <p class="text-gray-600 dark:text-gray-300">Our AI is identifying your dish and finding the perfect recipe</p>
+                        <div class="progress-container-inner mt-8">
+                            <div class="progress-label dark:text-gray-300">
+                                <span>Image recognition</span>
+                                <span id="recognitionProgress">0%</span>
+                            </div>
+                            <div class="progress-bar-inner">
+                                <div id="recognitionProgressBar" class="progress-fill"></div>
+                            </div>
+                            
+                            <div class="progress-label mt-4 dark:text-gray-300">
+                                <span>Recipe matching</span>
+                                <span id="recipeProgress">0%</span>
+                            </div>
+                            <div class="progress-bar-inner">
+                                <div id="recipeProgressBar" class="progress-fill"></div>
+                            </div>
                         </div>
-                        <progress class="progress progress-primary w-full" value="85" max="100"></progress>
-                        
-                        <div class="flex justify-between mt-4 mb-2">
-                            <span>Recipe matching</span>
-                            <span>70%</span>
-                        </div>
-                        <progress class="progress progress-secondary w-full" value="70" max="100"></progress>
                     </div>
                 </div>
                 
                 <!-- Dish Identification View (initially hidden) -->
                 <div id="dishIdentificationView" class="hidden p-6">
                     <div class="text-center mb-6">
-                        <h2 class="text-2xl font-bold text-gray-900 mb-2">We found these dishes</h2>
-                        <p class="text-gray-600">Select the dish that matches your photo</p>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-2 dark:text-white">We found these dishes</h2>
+                        <p class="text-gray-600 dark:text-gray-300">Select the dish that matches your photo</p>
+                    </div>
+                    
+                    <!-- Dietary Filters -->
+                    <div class="dietary-filters mb-6 flex flex-wrap justify-center">
+                        <div class="dietary-filter active" data-filter="all">
+                            <i class="fas fa-utensils"></i> All
+                        </div>
+                        <div class="dietary-filter" data-filter="vegetarian">
+                            <i class="fas fa-leaf"></i> Vegetarian
+                        </div>
+                        <div class="dietary-filter" data-filter="gluten-free">
+                            <i class="fas fa-bread-slice"></i> Gluten-Free
+                        </div>
+                        <div class="dietary-filter" data-filter="quick">
+                            <i class="fas fa-bolt"></i> Quick Meals
+                        </div>
                     </div>
                     
                     <div id="dishOptions" class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -174,7 +204,7 @@
             </div>
             
             <div class="mt-12 text-center slide-in-up delay-100">
-                <div class="inline-flex items-center bg-purple-100 text-purple-800 rounded-full py-2 px-6">
+                <div class="inline-flex items-center bg-purple-100 text-purple-800 rounded-full py-2 px-6 dark:bg-purple-900 dark:text-purple-100">
                     <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
                     <p>Tip: Take photos in good lighting for best results</p>
                 </div>
@@ -185,11 +215,15 @@
     <!-- Recipe Display Section -->
     <section id="recipeView" class="py-20 hidden">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="bg-white rounded-2xl shadow-xl overflow-hidden scale-in">
-                <div class="p-6 md:p-8">
-                    <div class="flex flex-wrap justify-between items-start gap-4 mb-8">
+            <div class="bg-white rounded-2xl shadow-xl overflow-hidden scale-in dark:bg-gray-800">
+                <div class="p-6 md:p-8 relative">
+                    <button id="shareRecipeBtn" class="share-recipe">
+                        <i class="fas fa-share-alt"></i>
+                    </button>
+                    
+                    <div class="recipe-header">
                         <div>
-                            <h1 id="recipeTitle" class="text-3xl font-bold text-gray-800 mb-2">Spaghetti Carbonara</h1>
+                            <h1 id="recipeTitle" class="text-3xl font-bold text-gray-800 mb-2 dark:text-white">Spaghetti Carbonara</h1>
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <div id="timeBadge" class="badge badge-primary gap-2">
                                     <i class="fa-solid fa-clock"></i> <span>30 mins</span>
@@ -204,12 +238,19 @@
                                     <i class="fa-solid fa-fire"></i> <span>650 calories</span>
                                 </div>
                             </div>
+                            <div class="dietary-tags flex flex-wrap gap-2">
+                                <span class="recipe-card-tag vegetarian"><i class="fas fa-leaf mr-1"></i>Vegetarian</span>
+                                <span class="recipe-card-tag quick"><i class="fas fa-bolt mr-1"></i>Quick Meal</span>
+                            </div>
                         </div>
-                        <div class="flex gap-2">
-                            <button id="printBtn" class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-lg transition">
+                        <div class="recipe-actions">
+                            <button id="printBtn" class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-lg transition dark:bg-gray-700 dark:text-white">
                                 <i class="fa-solid fa-print mr-2"></i> Print
                             </button>
-                            <button id="newSearchBtn" class="btn bg-purple-100 hover:bg-purple-200 text-purple-800 py-2 px-4 rounded-lg transition">
+                            <button id="shoppingListBtn" class="btn bg-blue-100 hover:bg-blue-200 text-blue-800 py-2 px-4 rounded-lg transition dark:bg-blue-900 dark:text-blue-100">
+                                <i class="fa-solid fa-cart-shopping mr-2"></i> Shopping List
+                            </button>
+                            <button id="newSearchBtn" class="btn bg-purple-100 hover:bg-purple-200 text-purple-800 py-2 px-4 rounded-lg transition dark:bg-purple-900 dark:text-purple-100">
                                 <i class="fa-solid fa-rotate-left mr-2"></i> New Search
                             </button>
                         </div>
@@ -217,14 +258,14 @@
                     
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                         <div>
-                            <div class="bg-gray-100 rounded-xl overflow-hidden mb-6">
+                            <div class="bg-gray-100 rounded-xl overflow-hidden mb-6 dark:bg-gray-700">
                                 <img id="recipeImage" src="https://images.unsplash.com/photo-1588013273468-315fd88ea34c?q=80&w=1738" alt="Recipe" class="w-full h-64 object-cover">
                             </div>
                             
-                            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 slide-in-left">
+                            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 slide-in-left dark:text-white">
                                 <i class="fa-solid fa-carrot text-purple-600"></i> Ingredients
                             </h2>
-                            <ul id="ingredientsList" class="space-y-3 mb-8">
+                            <ul id="ingredientsList" class="space-y-3 mb-8 dark:text-gray-300">
                                 <li class="ingredient-item slide-in-left delay-100">400g spaghetti</li>
                                 <li class="ingredient-item slide-in-left delay-200">200g pancetta or guanciale, diced</li>
                                 <li class="ingredient-item slide-in-left delay-300">4 large eggs</li>
@@ -234,48 +275,50 @@
                                 <li class="ingredient-item">Salt</li>
                             </ul>
                             
-                            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 slide-in-left">
+                            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 slide-in-left dark:text-white">
                                 <i class="fa-solid fa-chart-pie text-purple-600"></i> Nutrition Information
                             </h2>
-                            <div class="bg-blue-50 rounded-xl p-5 slide-in-left">
+                            <div class="bg-blue-50 rounded-xl p-5 slide-in-left dark:bg-blue-900 dark:bg-opacity-20">
                                 <div class="grid grid-cols-2 gap-4 mb-4">
                                     <div>
-                                        <p class="font-semibold">Calories</p>
+                                        <p class="font-semibold dark:text-gray-300">Calories</p>
                                         <p id="caloriesDetail" class="text-2xl font-bold text-purple-600">650</p>
-                                        <p class="text-sm text-gray-600">per serving</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">per serving</p>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">Carbs</p>
+                                        <p class="font-semibold dark:text-gray-300">Carbs</p>
                                         <p class="text-2xl font-bold text-pink-600">65g</p>
-                                        <p class="text-sm text-gray-600">41% of daily</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">41% of daily</p>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">Protein</p>
+                                        <p class="font-semibold dark:text-gray-300">Protein</p>
                                         <p class="text-2xl font-bold text-green-600">28g</p>
-                                        <p class="text-sm text-gray-600">56% of daily</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">56% of daily</p>
                                     </div>
                                     <div>
-                                        <p class="font-semibold">Fat</p>
+                                        <p class="font-semibold dark:text-gray-300">Fat</p>
                                         <p class="text-2xl font-bold text-amber-500">32g</p>
-                                        <p class="text-sm text-gray-600">41% of daily</p>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">41% of daily</p>
                                     </div>
                                 </div>
-                                <p class="text-sm text-gray-600">Nutritional values are estimates only and may vary based on specific ingredients used.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Nutritional values are estimates only and may vary based on specific ingredients used.</p>
                             </div>
                         </div>
                         
                         <div>
-                            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 slide-in-right">
+                            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 slide-in-right dark:text-white">
                                 <i class="fa-solid fa-list-ol text-purple-600"></i> Instructions
                             </h2>
-                            <ol id="instructionsList" class="space-y-4 mb-8">
+                            <ol id="instructionsList" class="space-y-4 mb-8 dark:text-gray-300">
                                 <li class="step-item slide-in-right delay-100">
                                     <div class="step-number">1</div>
                                     <p>Cook spaghetti in salted boiling water until al dente. Reserve about 1 cup of pasta water before draining.</p>
+                                    <button class="timer-btn" data-time="10"><i class="fas fa-clock mr-1"></i> Set 10 min timer</button>
                                 </li>
                                 <li class="step-item slide-in-right delay-200">
                                     <div class="step-number">2</div>
                                     <p>While pasta cooks, fry pancetta in a large pan over medium heat until crispy, about 7-10 minutes. Remove from heat.</p>
+                                    <button class="timer-btn" data-time="8"><i class="fas fa-clock mr-1"></i> Set 8 min timer</button>
                                 </li>
                                 <li class="step-item slide-in-right delay-300">
                                     <div class="step-number">3</div>
@@ -299,16 +342,75 @@
                                 </li>
                             </ol>
                             
-                            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 slide-in-right">
+                            <h2 class="text-xl font-bold mb-4 flex items-center gap-2 slide-in-right dark:text-white">
                                 <i class="fa-solid fa-lightbulb text-purple-600"></i> Chef's Tips
                             </h2>
-                            <div class="bg-amber-50 rounded-xl p-5 slide-in-right">
-                                <ul class="list-disc pl-5 space-y-2">
+                            <div class="bg-amber-50 rounded-xl p-5 slide-in-right dark:bg-amber-900 dark:bg-opacity-20">
+                                <ul class="list-disc pl-5 space-y-2 dark:text-gray-300">
                                     <li>Use the best quality eggs you can find as they're central to this recipe</li>
                                     <li>Don't skip the pasta water - it helps create the perfect creamy sauce</li>
                                     <li>Traditionally, Carbonara doesn't contain cream - the sauce comes from eggs and cheese</li>
                                     <li>Serve immediately as the sauce thickens quickly</li>
                                 </ul>
+                            </div>
+                            
+                            <h2 class="text-xl font-bold mb-4 mt-8 flex items-center gap-2 slide-in-right dark:text-white">
+                                <i class="fa-solid fa-video text-purple-600"></i> Video Tutorials
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                                <div class="video-tutorial">
+                                    <div class="video-overlay" style="background-image: url('https://img.youtube.com/vi/D_2DBLAt57c/maxresdefault.jpg')">
+                                        <div class="play-button" data-video="D_2DBLAt57c">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 dark:bg-gray-700">
+                                        <h3 class="font-bold mb-1 dark:text-white">Perfect Carbonara Technique</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Chef Gordon Ramsay</p>
+                                    </div>
+                                </div>
+                                <div class="video-tutorial">
+                                    <div class="video-overlay" style="background-image: url('https://img.youtube.com/vi/9N5kXefy7-Q/maxresdefault.jpg')">
+                                        <div class="play-button" data-video="9N5kXefy7-Q">
+                                            <i class="fas fa-play"></i>
+                                        </div>
+                                    </div>
+                                    <div class="p-4 dark:bg-gray-700">
+                                        <h3 class="font-bold mb-1 dark:text-white">Authentic Italian Method</h3>
+                                        <p class="text-sm text-gray-600 dark:text-gray-400">Pasta Grannies</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Recommended Recipes -->
+                            <h2 class="text-xl font-bold mb-4 mt-12 flex items-center gap-2 slide-in-right dark:text-white">
+                                <i class="fas fa-heart text-purple-600"></i> Recommended For You
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="recommended-recipe bg-white rounded-lg shadow p-4 dark:bg-gray-700">
+                                    <div class="flex">
+                                        <img src="https://images.unsplash.com/photo-1606755962773-d324e7a7a7b6?q=80&w=1740" alt="Pasta" class="w-16 h-16 object-cover rounded-lg">
+                                        <div class="ml-4">
+                                            <h3 class="font-bold dark:text-white">Pasta Primavera</h3>
+                                            <div class="text-sm text-gray-600 dark:text-gray-300 flex items-center mt-1">
+                                                <i class="fas fa-clock mr-2"></i>25 min
+                                                <span class="recipe-card-tag vegetarian ml-3">Vegetarian</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="recommended-recipe bg-white rounded-lg shadow p-4 dark:bg-gray-700">
+                                    <div class="flex">
+                                        <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?q=80&w=1921" alt="Risotto" class="w-16 h-16 object-cover rounded-lg">
+                                        <div class="ml-4">
+                                            <h3 class="font-bold dark:text-white">Mushroom Risotto</h3>
+                                            <div class="text-sm text-gray-600 dark:text-gray-300 flex items-center mt-1">
+                                                <i class="fas fa-clock mr-2"></i>35 min
+                                                <span class="recipe-card-tag vegetarian ml-3">Vegetarian</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -318,11 +420,11 @@
     </section>
 
     <!-- Reviews Section -->
-    <section id="reviews" class="py-20 bg-gradient-to-br from-purple-50 to-indigo-50">
+    <section id="reviews" class="py-20 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 slide-in-up">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">What Our Users Say</h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4 dark:text-white">What Our Users Say</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto dark:text-gray-300">
                     Discover why thousands of home cooks love our AI-powered recipe finder
                 </p>
             </div>
@@ -336,8 +438,8 @@
                     <div class="flex items-center mb-6">
                         <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1664" alt="User" class="w-14 h-14 rounded-full object-cover">
                         <div class="ml-4">
-                            <h3 class="text-lg font-bold">Sarah Johnson</h3>
-                            <p class="text-sm text-gray-500">Home Cook</p>
+                            <h3 class="text-lg font-bold dark:text-white">Sarah Johnson</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Home Cook</p>
                         </div>
                     </div>
                     <div class="stars mb-4">
@@ -347,11 +449,11 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="text-gray-700 mb-4">
-                        "This app changed the way I cook! I took a picture of a dish I had at a restaurant, and RecipeAI gave me the perfect recipe to recreate it at home. The instructions were so clear even my husband could follow them!"
+                    <p class="text-gray-700 mb-4 dark:text-gray-300">
+                        "This app changed the way I cook! I took a picture of a dish I had at a restaurant, and Chaska Bites gave me the perfect recipe to recreate it at home. The instructions were so clear even my husband could follow them!"
                     </p>
                     <div class="flex items-center">
-                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded">Spaghetti Carbonara</span>
+                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded dark:bg-purple-900 dark:text-purple-100">Spaghetti Carbonara</span>
                     </div>
                 </div>
                 
@@ -363,8 +465,8 @@
                     <div class="flex items-center mb-6">
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1664" alt="User" class="w-14 h-14 rounded-full object-cover">
                         <div class="ml-4">
-                            <h3 class="text-lg font-bold">Michael Chen</h3>
-                            <p class="text-sm text-gray-500">Food Blogger</p>
+                            <h3 class="text-lg font-bold dark:text-white">Michael Chen</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Food Blogger</p>
                         </div>
                     </div>
                     <div class="stars mb-4">
@@ -374,11 +476,11 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star-half-alt"></i>
                     </div>
-                    <p class="text-gray-700 mb-4">
-                        "As a food blogger, I'm constantly trying new recipes. RecipeAI helps me identify dishes and get inspiration for my content. The nutrition information is incredibly helpful for creating balanced meals."
+                    <p class="text-gray-700 mb-4 dark:text-gray-300">
+                        "As a food blogger, I'm constantly trying new recipes. Chaska Bites helps me identify dishes and get inspiration for my content. The nutrition information is incredibly helpful for creating balanced meals."
                     </p>
                     <div class="flex items-center">
-                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded">Chicken Tikka Masala</span>
+                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded dark:bg-purple-900 dark:text-purple-100">Chicken Tikka Masala</span>
                     </div>
                 </div>
                 
@@ -390,8 +492,8 @@
                     <div class="flex items-center mb-6">
                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1664" alt="User" class="w-14 h-14 rounded-full object-cover">
                         <div class="ml-4">
-                            <h3 class="text-lg font-bold">Emma Rodriguez</h3>
-                            <p class="text-sm text-gray-500">Busy Mom</p>
+                            <h3 class="text-lg font-bold dark:text-white">Emma Rodriguez</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Busy Mom</p>
                         </div>
                     </div>
                     <div class="stars mb-4">
@@ -401,19 +503,19 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
                     </div>
-                    <p class="text-gray-700 mb-4">
-                        "I'm a busy mom with picky eaters. RecipeAI has been a game-changer! I can quickly find recipes using ingredients I have, and the app even suggests kid-friendly variations. The chef's tips are always spot on."
+                    <p class="text-gray-700 mb-4 dark:text-gray-300">
+                        "I'm a busy mom with picky eaters. Chaska Bites has been a game-changer! I can quickly find recipes using ingredients I have, and the app even suggests kid-friendly variations. The chef's tips are always spot on."
                     </p>
                     <div class="flex items-center">
-                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded">Vegetable Stir Fry</span>
+                        <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2 py-1 rounded dark:bg-purple-900 dark:text-purple-100">Vegetable Stir Fry</span>
                     </div>
                 </div>
             </div>
             
             <div class="mt-16 text-center slide-in-up delay-300">
-                <div class="inline-flex flex-col items-center bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
-                    <h3 class="text-2xl font-bold mb-4">Join Thousands of Satisfied Cooks</h3>
-                    <p class="text-gray-600 mb-6">
+                <div class="inline-flex flex-col items-center bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto dark:bg-gray-800">
+                    <h3 class="text-2xl font-bold mb-4 dark:text-white">Join Thousands of Satisfied Cooks</h3>
+                    <p class="text-gray-600 mb-6 dark:text-gray-300">
                         Start discovering amazing recipes today with our AI-powered platform
                     </p>
                     <button onclick="document.getElementById('cameraSection').scrollIntoView({behavior: 'smooth'})" class="bg-gradient-to-r from-purple-600 to-pink-500 text-white font-bold py-3 px-8 rounded-full hover:from-purple-700 hover:to-pink-600 shadow-lg transition-all">
@@ -430,18 +532,144 @@
             <button class="close-history">
                 <i class="fas fa-times"></i>
             </button>
-            <h2 class="text-3xl font-bold mb-8 text-center text-purple-600">Your Recipe History</h2>
+            <div class="history-header">
+                <h2 class="text-3xl font-bold text-purple-600">Your Recipe History</h2>
+                <div id="clearHistory" class="clear-history">
+                    <i class="fas fa-trash mr-1"></i> Clear History
+                </div>
+            </div>
             <div id="historyList" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- History items will be added here dynamically -->
             </div>
             <div id="emptyHistory" class="empty-history">
                 <i class="fas fa-history"></i>
-                <h3 class="text-xl font-bold mb-2">No Recipe History Yet</h3>
-                <p class="text-gray-600 mb-6">Your viewed recipes will appear here once you start using the app</p>
+                <h3 class="text-xl font-bold mb-2 dark:text-white">No Recipe History Yet</h3>
+                <p class="text-gray-600 mb-6 dark:text-gray-300">Your viewed recipes will appear here once you start using the app</p>
                 <button onclick="document.getElementById('cameraSection').scrollIntoView({behavior: 'smooth'})" class="btn bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 px-8 rounded-lg hover:shadow-lg transition">
                     <i class="fas fa-camera mr-2"></i>Find Your First Recipe
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- Meal Planner View -->
+    <div id="mealPlannerView" class="meal-planner-view">
+        <div class="meal-planner-container">
+            <button class="close-planner">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="text-3xl font-bold mb-8 text-center text-purple-600">Weekly Meal Planner</h2>
+            <p class="text-center mb-8 text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                Plan your meals for the week ahead. Drag recipes to each day to create your perfect meal plan.
+            </p>
+            
+            <div class="planner-grid">
+                <div class="planner-day">
+                    <h3>Monday</h3>
+                    <div class="planner-recipe" draggable="true" data-recipe="Spaghetti Carbonara">Spaghetti Carbonara</div>
+                    <div class="planner-recipe" draggable="true" data-recipe="Caesar Salad">Caesar Salad</div>
+                </div>
+                <div class="planner-day">
+                    <h3>Tuesday</h3>
+                    <div class="planner-recipe" draggable="true" data-recipe="Chicken Tikka Masala">Chicken Tikka Masala</div>
+                </div>
+                <div class="planner-day">
+                    <h3>Wednesday</h3>
+                    <div class="planner-recipe" draggable="true" data-recipe="Vegetable Stir Fry">Vegetable Stir Fry</div>
+                </div>
+                <div class="planner-day">
+                    <h3>Thursday</h3>
+                    <div class="planner-recipe" draggable="true" data-recipe="Beef Burger">Beef Burger</div>
+                </div>
+                <div class="planner-day">
+                    <h3>Friday</h3>
+                    <div class="planner-recipe" draggable="true" data-recipe="Pizza Margherita">Pizza Margherita</div>
+                </div>
+                <div class="planner-day">
+                    <h3>Saturday</h3>
+                    <div class="planner-recipe" draggable="true" data-recipe="French Fries">French Fries</div>
+                    <div class="planner-recipe" draggable="true" data-recipe="Chicken Nuggets">Chicken Nuggets</div>
+                </div>
+                <div class="planner-day">
+                    <h3>Sunday</h3>
+                    <div class="planner-recipe" draggable="true" data-recipe="Chocolate Chip Cookies">Chocolate Chip Cookies</div>
+                </div>
+            </div>
+            
+            <div class="mt-8 text-center">
+                <button class="btn bg-gradient-to-r from-purple-600 to-pink-500 text-white py-3 px-8 rounded-lg hover:shadow-lg transition">
+                    <i class="fas fa-download mr-2"></i>Export Meal Plan
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Shopping List View -->
+    <div id="shoppingListView" class="shopping-list-view">
+        <div class="shopping-list-container">
+            <button class="close-shopping">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="text-3xl font-bold mb-8 text-center text-purple-600">Shopping List</h2>
+            <p class="text-center mb-6 text-gray-600 dark:text-gray-300">
+                Your shopping list based on selected recipes
+            </p>
+            
+            <div id="shoppingListContent">
+                <div class="shopping-item">
+                    <input type="checkbox" id="item1">
+                    <label for="item1">400g spaghetti</label>
+                </div>
+                <div class="shopping-item">
+                    <input type="checkbox" id="item2">
+                    <label for="item2">200g pancetta</label>
+                </div>
+                <div class="shopping-item">
+                    <input type="checkbox" id="item3">
+                    <label for="item3">4 large eggs</label>
+                </div>
+                <div class="shopping-item">
+                    <input type="checkbox" id="item4">
+                    <label for="item4">100g Pecorino cheese</label>
+                </div>
+                <div class="shopping-item">
+                    <input type="checkbox" id="item5">
+                    <label for="item5">50g Parmesan cheese</label>
+                </div>
+                <div class="shopping-item">
+                    <input type="checkbox" id="item6">
+                    <label for="item6">Fresh black pepper</label>
+                </div>
+                <div class="shopping-item">
+                    <input type="checkbox" id="item7">
+                    <label for="item7">Sea salt</label>
+                </div>
+            </div>
+            
+            <div class="mt-8 flex justify-center gap-4">
+                <button class="btn bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-6 rounded-lg transition dark:bg-gray-700 dark:text-white">
+                    <i class="fas fa-print mr-2"></i> Print List
+                </button>
+                <button class="btn bg-gradient-to-r from-purple-600 to-pink-500 text-white py-2 px-6 rounded-lg hover:shadow-lg transition">
+                    <i class="fas fa-share-alt mr-2"></i> Share
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Timer View -->
+    <div class="timer-container" id="timerContainer">
+        <div class="flex justify-between items-center">
+            <h3 class="text-xl font-bold dark:text-white">Cooking Timer</h3>
+            <button class="close-timer">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="timer-display" id="timerDisplay">10:00</div>
+        <div class="timer-controls">
+            <button id="timerStart" class="primary"><i class="fas fa-play"></i> Start</button>
+            <button id="timerPause"><i class="fas fa-pause"></i> Pause</button>
+            <button id="timerReset"><i class="fas fa-redo"></i> Reset</button>
         </div>
     </div>
 
@@ -516,14 +744,38 @@
             
             <div class="border-t border-gray-700 mt-12 pt-8 text-center">
                 <p class="text-gray-400">
-                    &copy; 2025 RecipeAI. All rights reserved. 
+                    &copy; 2025 Chaska Bites. All rights reserved. 
                     <a href="#" class="text-gray-300 hover:text-white ml-4">Privacy Policy</a> 
                     <a href="#" class="text-gray-300 hover:text-white ml-4">Terms of Service</a>
                 </p>
             </div>
         </div>
     </footer>
+    
+    <!-- Floating Action Buttons -->
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    
+    <div class="meal-planner" id="mealPlannerBtn">
+        <i class="fas fa-calendar-alt"></i>
+    </div>
+    
+    <div class="voice-control" id="voiceControlBtn">
+        <i class="fas fa-microphone"></i>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">Recipe added to favorites!</span>
+    </div>
 
     <script src="app.js"></script>
+    
+    <!-- Hidden audio element for timer sound -->
+    <audio id="timerSound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-alarm-digital-clock-beep-989.mp3" type="audio/mpeg">
+    </audio>
 </body>
 </html>
